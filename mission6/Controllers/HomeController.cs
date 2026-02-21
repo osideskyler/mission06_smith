@@ -31,7 +31,7 @@ public class HomeController : Controller
         ViewBag.Categories = _context.Categories
             .OrderBy(Category => Category.CategoryName)
             .ToList();
-        return View();
+        return View(new Movie());
     }
 
     [HttpPost]
@@ -41,6 +41,9 @@ public class HomeController : Controller
         {
             _context.Movies.Add(movie); 
             _context.SaveChanges();
+            ViewBag.Categories = _context.Categories
+                .OrderBy(c => c.CategoryName)
+                .ToList();
             return View(movie);
         }
         else
@@ -56,7 +59,7 @@ public class HomeController : Controller
     {
        var movies = _context.Movies
            .Include(movie => movie.Category)
-           .OrderBy(movie => movie.Title)
+           .OrderBy(movie => movie.Title.ToLower())
            .ToList();
 
         return View(movies);

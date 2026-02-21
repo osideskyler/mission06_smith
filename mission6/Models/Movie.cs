@@ -12,12 +12,13 @@ namespace mission6
         [ForeignKey("CategoryId")]
         public int? CategoryId { get; set; }
         public Category? Category { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Movie title is required")]
+        
         public string Title { get; set; }
         
 
         [Required]
-        [Range(1888, 2026)]
+        [Range(1888, 2026, ErrorMessage = "You must enter a valid movie year")]
         public int Year { get; set; }
         
         public string? Director { get; set; }
