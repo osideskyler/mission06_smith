@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using mission6;
+using mission6.Models;
 
 namespace Mission06_LastName.Models
 {
@@ -9,46 +10,50 @@ namespace Mission06_LastName.Models
         { 
         }
 
-        public DbSet<Application> Applications { get; set; }
+        public DbSet<Movie> Movies { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Seed data: Add your 3 favorite movies here
-            modelBuilder.Entity<Application>().HasData(
-                new Application 
+            modelBuilder.Entity<Movie>().HasData(
+                new Movie 
                 { 
                     MovieId = 1, 
-                    Category = "Sci-Fi", 
+                    CategoryId = 1, 
                     Title = "Inception", 
                     Year = 2010, 
                     Director = "Christopher Nolan", 
                     Rating = "PG-13", 
                     Edited = false, 
-                    LentTo = "", 
+                    LentTo = "",
+                    CopiedToPlex = true,
                     Notes = "Mind blowing" 
                 },
-                new Application 
+                new Movie 
                 { 
                     MovieId = 2, 
-                    Category = "Action", 
+                    CategoryId = 3, 
                     Title = "The Dark Knight", 
                     Year = 2008, 
                     Director = "Christopher Nolan", 
                     Rating = "PG-13", 
                     Edited = false, 
-                    LentTo = "", 
+                    LentTo = "",
+                    CopiedToPlex = true,
                     Notes = "Best Joker" 
                 },
-                new Application 
+                new Movie 
                 { 
                     MovieId = 3, 
-                    Category = "Comedy", 
+                    CategoryId = 2, 
                     Title = "Napoleon Dynamite", 
                     Year = 2004, 
                     Director = "Jared Hess", 
                     Rating = "PG", 
                     Edited = true, 
-                    LentTo = "Joel", 
+                    LentTo = "Joel",
+                    CopiedToPlex = false,
                     Notes = "Gosh!" 
                 }
             );
